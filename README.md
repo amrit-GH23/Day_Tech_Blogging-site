@@ -44,7 +44,6 @@ A full-stack blogging platform built with **React (Vite)** and **Django REST Fra
 
 ### 🔙 Backend (Django)
 
-```bash
 # Navigate to backend folder
 cd backend
 
@@ -76,20 +75,19 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 
 ---
 
-### ⚛️ Frontend (React with Vite)
-```bash
-Copy
-Edit
+⚛️ Frontend Setup (React with Vite)
+bash
+
 # Navigate to frontend folder
 cd ../frontend
 
-# Install dependencies
+# Install frontend dependencies
 npm install
 
-# Setup .env file (refer to .env.example)
+# Copy environment config
 cp .env.example .env
 
-# Run development server
+# Start the frontend development server
 npm run dev
 
 📂 Example .env for React:
