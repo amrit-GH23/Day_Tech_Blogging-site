@@ -18,7 +18,7 @@ A full-stack blogging platform built with **React (Vite)** and **Django REST Fra
 ## ✨ Features
 
 - 🔐 User Authentication (JWT)
-- 📝 Create, Edit, Delete Blogs
+- 📝 Create, Read Blogs
 - 📖 View Public Blogs
 - 🌐 RESTful API integration
 - 🎯 Responsive Design
