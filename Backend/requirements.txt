@@ -1,0 +1,17 @@
+# Core Django + DRF
+Django==5.1.5
+djangorestframework==3.15.2
+
+# Environment and CORS
+python-dotenv==1.0.1
+whitenoise==6.9.0
+gunicorn==23.0.0
+sqlparse==0.5.3
+
+# CORS Headers 
+django-cors-headers
+
+# JWT Auth
+djangorestframework-simplejwt
+
+
