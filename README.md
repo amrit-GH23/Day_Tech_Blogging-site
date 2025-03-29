@@ -66,6 +66,7 @@ python manage.py createsuperuser
 # Run backend server
 python manage.py runserver
 
+---
 
 📂 Example .env for Django:
 env
@@ -90,11 +91,16 @@ cp .env.example .env
 # Start the frontend development server
 npm run dev
 
+---
+
 📂 Example .env for React:
 env
 VITE_API_URL=http://127.0.0.1:8000/api
 
+---
+
 🚀 Deployment Tips
+
 Set DEBUG=False in production
 
 Use a strong, secret SECRET_KEY
