@@ -29,6 +29,8 @@ A full-stack blogging platform built with **React (Vite)** and **Django REST Fra
 ## 📁 Project Structure
 
 DayTechBlog/                  # 🌐 Root Directory
+
+
 │
 ├── backend/                  # 🛠️ Django Backend
 │   ├── blog/                 # Django app: handles blog logic, models, APIs
@@ -40,6 +42,9 @@ DayTechBlog/                  # 🌐 Root Directory
 │   ├── .env                  # Django environment variables (ignored)
 │   └── manage.py             # Django entry point
 ├── venv/                     # Python virtual environment (ignored)
+
+
+
 │
 ├── frontend/                 # ⚛️ React Frontend (Vite)
 │   ├── public/               # Static files (favicon, index.html, etc.)
@@ -63,6 +68,7 @@ DayTechBlog/                  # 🌐 Root Directory
 │   ├── index.html            # HTML template used by Vite
 │   ├── package.json          # Node dependencies and scripts
 │   └── vite.config.js        # Vite configuration
+
 │
 ├── .gitignore                # Files and folders to be ignored by Git
 ├── README.md                 # Project documentation
