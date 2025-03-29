@@ -69,13 +69,17 @@ python manage.py runserver
 
 
 📂 Example .env for Django:
-
 env
 SECRET_KEY=your_django_secret
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1,localhost
 
+---
 
+### ⚛️ Frontend (React with Vite)
+```bash
+Copy
+Edit
 # Navigate to frontend folder
 cd ../frontend
 
@@ -89,7 +93,6 @@ cp .env.example .env
 npm run dev
 
 📂 Example .env for React:
-
 env
 VITE_API_URL=http://127.0.0.1:8000/api
 
