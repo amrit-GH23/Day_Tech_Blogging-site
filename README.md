@@ -28,6 +28,45 @@ A full-stack blogging platform built with **React (Vite)** and **Django REST Fra
 
 ## 📁 Project Structure
 
+DayTechBlog/                  # 🌐 Root Directory
+│
+├── backend/                  # 🛠️ Django Backend
+│   ├── blog/                 # Django app: handles blog logic, models, APIs
+│   ├── blogApp/              # Django project settings, URLs, WSGI/ASGI
+│   ├── media/                # User-uploaded files (ignored in Git)
+│   ├── staticfiles/          # Collected static files for production
+│   ├── db.sqlite3            # Development database (ignored)
+│   ├── requirements.txt      # Python dependencies
+│   ├── .env                  # Django environment variables (ignored)
+│   └── manage.py             # Django entry point
+├── venv/                     # Python virtual environment (ignored)
+│
+├── frontend/                 # ⚛️ React Frontend (Vite)
+│   ├── public/               # Static files (favicon, index.html, etc.)
+│   ├── src/                  # Source code
+│   │   ├── components/       # Reusable UI components
+│   │   │   └── Navbar.jsx    # Navigation bar component
+│   │   │
+│   │   ├── pages/            # Page-level components (routes)
+│   │   │   ├── Blog.jsx
+│   │   │   ├── BlogView.jsx
+│   │   │   ├── CreateBlog.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Signup.jsx
+│   │   │
+│   │   ├── App.jsx           # Main app component
+│   │   ├── main.jsx          # Entry point for React app
+│   │   ├── api.js            # Axios instance or API utility functions
+│   │   └── styles.css        # Global styles (optional: Tailwind or custom CSS)
+│   │
+│   ├── .env                  # React environment variables (ignored)
+│   ├── index.html            # HTML template used by Vite
+│   ├── package.json          # Node dependencies and scripts
+│   └── vite.config.js        # Vite configuration
+│
+├── .gitignore                # Files and folders to be ignored by Git
+├── README.md                 # Project documentation
+
 
 ---
 
