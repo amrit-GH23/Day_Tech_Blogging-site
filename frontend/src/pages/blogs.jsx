@@ -53,7 +53,7 @@ const Blogs = () => {
     ))}
   </div>
 ) : (
-  <p className="text-center text-gray-600 mt-10">No blogs found.</p>
+  <p className="text-center text-gray-600 mt-10">Loading..........blogs.....for.......you...😅😅</p>
 )}
       </div>
     </div>
