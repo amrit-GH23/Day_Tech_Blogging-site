@@ -3,17 +3,35 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import toast from "react-hot-toast";
 import Navbar from "../components/navbar";
+import { fetchBlogs2 } from "../apiView";
+import { useParams } from "react-router-dom";
 
-const CreateBlog = () => {
+const Edit = () => {
+  const [blog, setBlog] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Tech");
+  
 
+  const { id } = useParams();
   const [token, setToken] = useState(null);
 
-   useEffect(() => {
+  useEffect(()=>{
     const t= localStorage.getItem("accessToken")
     setToken(t)
+
+  },[])
+
+   useEffect(() => {
+
+    const getBlog=async()=>{
+       const data = await fetchBlogs2(id)
+       setBlog(data)
+       setTitle(data.title)
+       setContent(data.content)
+       console.log(data)
+    }
+ 
+    getBlog()
 
   }, [])
    
@@ -21,14 +39,13 @@ const CreateBlog = () => {
   const submitPost = async () => {
     const blogData = {
       title,
-      content,
-      category,
-    };
+      content
+        };
 
     try {
       const API_BASE = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${API_BASE}/api/blogs/create/`, {
-        method: "POST",
+      const response = await fetch(`${API_BASE}/api/edit/${id}/`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
            Authorization: `Bearer ${token}`,
@@ -36,12 +53,11 @@ const CreateBlog = () => {
         body: JSON.stringify(blogData),
       });
       console.log(JSON.stringify(blogData))
-      if (response.status === 201) {
+      if (response.status === 200) {
         toast.success("🎉 Blog published successfully!");
         // Optionally clear the form
         setTitle("");
         setContent("");
-        setCategory("Tech");
       }
        else {
         const data = await response.json();
@@ -76,7 +92,7 @@ const CreateBlog = () => {
     <Navbar/>
     <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-md mt-10">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">
-        📝 Create a New Blog
+        📝 Edit the Blog
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -95,7 +111,7 @@ const CreateBlog = () => {
             placeholder="Start writing your blog post..."
             modules={modules}
             value={content}
-            onChange={setContent}
+            onChange={(value) => setContent(value)}
             className="h-full text-lg"
           />
         </div>
@@ -112,4 +128,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default Edit;

@@ -8,6 +8,7 @@ import Signup from './pages/signup';
 
 import { Navigate } from "react-router-dom";
 import Started from './pages/started';
+import Edit from './pages/edit';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("accessToken");
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/create' element={<CreateBlog />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/edit/:id'  element={<Edit/>}/>
       </Routes>
     </BrowserRouter>
   );

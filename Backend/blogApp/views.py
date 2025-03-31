@@ -56,3 +56,30 @@ def get_blog(request, pk):
         return Response(serializer.data)
     except Blog.DoesNotExist:
         return Response({'error': 'Blog not found'}, status=404)
+
+@api_view(['PUT'])
+def Edit_blog(request,pk):
+    try:
+        blog=Blog.objects.get(id=pk)
+    # Update the blog instance with new data
+        serializer = BlogSerializer(blog, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()  # Save updated data to the database
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
+
+    except Blog.DoesNotExist:
+        return Response({"error":"Blog does not exists"}, status=404)
+
+   
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  # Requires authentication
+def Check_User(request,pk):
+    try:
+        blog=Blog.objects.get(id=pk)
+    except Blog.DoesNotExist:
+        return Response({"error":"Blog does not exists"}, status=404)
+    if(blog.author==request.user):
+        return Response({"authorized": True}, status=200)
+    else:
+        return Response({"authorized": False}, status=403)

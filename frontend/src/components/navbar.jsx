@@ -2,18 +2,37 @@ import { React, useState, useEffect } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import logo from "../assets/logo.png";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
 
   const {id} = useParams()
-
+  
   useEffect(() => {
     const t = localStorage.getItem("accessToken");
     setToken(t);
 
   }, []);
+
+  const Check_user=async(id)=>{
+  const API_BASE = import.meta.env.VITE_API_URL;
+  
+  try{
+    const response = await axios.get(`${API_BASE}/api/validate/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`, // Attach token in headers
+      },
+    });
+    console.log(response.status)
+    return response.data.authorized
+  }
+    catch (error) {
+      console.error("Error fetching blogs:", error);
+      return false;
+    }
+  }
 
 
 
@@ -34,22 +53,51 @@ const Navbar = () => {
       />
 
       <div className="flex justify-around space-x-4 pr-2"> 
+
+    {!id?(
       <NavLink
-         to="/create"
-         onClick={(e) => {
-           if (!token) {
-             e.preventDefault();
-             toast.error("Login required to create a blog!");
-           }
-         }}
-         className={({ isActive }) =>
-           `border-0 rounded-2xl cursor-pointer p-2 text-white transition-all duration-200 ${
-             isActive ? "bg-blue-500" : "bg-blue-400 hover:bg-blue-500"
-           }`
-         }
-       >
-         Create Blog
-       </NavLink>
+      to="/create"
+      onClick={(e) => {
+        if (!token) {
+          e.preventDefault();
+          toast.error("Login required to create a blog!");
+        }
+      }}
+      className={({ isActive }) =>
+        `border-0 rounded-2xl cursor-pointer p-2 text-white transition-all duration-200 ${
+          isActive ? "bg-blue-500" : "bg-blue-400 hover:bg-blue-500"
+        }`
+      }
+    >
+      Create Blog
+    </NavLink>
+    ):(
+      <NavLink
+      // to={`/edit/${id}`}
+      onClick={async(e) => {
+        if (!token) {
+          e.preventDefault();
+          toast.error("Login required to Edit a blog!");
+        }
+        else{
+            e.preventDefault();
+             const res=await Check_user(id);
+             if(!res){
+            toast.error("You are not authorised to edit blog!!")
+          }
+          else{
+            navigate(`/edit/${id}`)
+          }
+      }}}
+      className={({ isActive }) =>
+        `border-0 rounded-2xl cursor-pointer p-2 text-white transition-all duration-200 ${
+          isActive ? "bg-blue-500" : "bg-blue-400 hover:bg-blue-500"
+        }`
+      }
+    >
+      Edit Blog
+    </NavLink>
+    )}
 
         <NavLink
           to="/"
