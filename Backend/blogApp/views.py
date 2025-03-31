@@ -83,3 +83,14 @@ def Check_User(request,pk):
         return Response({"authorized": True}, status=200)
     else:
         return Response({"authorized": False}, status=403)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def myBlogs(request):
+    auth=request.user
+    try:
+        blogs=Blog.objects.filter(author=auth).order_by("-created_at")
+        serializer = BlogSerializer(blogs, many=True)
+        return Response(serializer.data,status=200)
+    except Blog.DoesNotExist:
+        return Response({"error":"No blog from this user"}, status=404)   

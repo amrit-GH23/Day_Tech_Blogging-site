@@ -28,7 +28,6 @@ const Edit = () => {
        setBlog(data)
        setTitle(data.title)
        setContent(data.content)
-       console.log(data)
     }
  
     getBlog()
@@ -52,9 +51,8 @@ const Edit = () => {
         },
         body: JSON.stringify(blogData),
       });
-      console.log(JSON.stringify(blogData))
       if (response.status === 200) {
-        toast.success("🎉 Blog published successfully!");
+        toast.success("🎉 Blog Updated successfully!");
         // Optionally clear the form
         setTitle("");
         setContent("");

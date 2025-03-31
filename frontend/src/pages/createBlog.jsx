@@ -35,7 +35,6 @@ const CreateBlog = () => {
         },
         body: JSON.stringify(blogData),
       });
-      console.log(JSON.stringify(blogData))
       if (response.status === 201) {
         toast.success("🎉 Blog published successfully!");
         // Optionally clear the form

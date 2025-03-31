@@ -25,7 +25,6 @@ const Navbar = () => {
         Authorization: `Bearer ${token}`, // Attach token in headers
       },
     });
-    console.log(response.status)
     return response.data.authorized
   }
     catch (error) {
@@ -100,14 +99,21 @@ const Navbar = () => {
     )}
 
         <NavLink
-          to="/"
+          to="/myBlogs"
+          onClick={(e)=>{
+            if(!token){
+              e.preventDefault()
+              toast.error("Login required")
+            }
+            // toast("Will be added")
+          }}
           className={({ isActive }) =>
             `border-0 rounded-2xl cursor-pointer p-2 text-white transition-all duration-200 ${
               isActive ? "bg-blue-500" : "bg-blue-400 hover:bg-blue-500"
             }`
           }
         >
-          Get Started
+          My Blogs
         </NavLink>
 
         {token ? (

@@ -16,4 +16,5 @@ urlpatterns = [
     path('blogs/create/', views.create_blog),
     path('validate/<int:pk>/', views.Check_User),
     path('edit/<int:pk>/', views.Edit_blog),
+    path('myBlogs/', views.myBlogs),
 ]
