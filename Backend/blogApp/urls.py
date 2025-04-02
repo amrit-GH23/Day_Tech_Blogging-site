@@ -17,4 +17,5 @@ urlpatterns = [
     path('validate/<int:pk>/', views.Check_User),
     path('edit/<int:pk>/', views.Edit_blog),
     path('myBlogs/', views.myBlogs),
+    path('delete/<int:pk>/', views.deleteBlog),
 ]

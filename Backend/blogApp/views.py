@@ -94,3 +94,14 @@ def myBlogs(request):
         return Response(serializer.data,status=200)
     except Blog.DoesNotExist:
         return Response({"error":"No blog from this user"}, status=404)   
+
+@api_view(['DELETE'])
+def deleteBlog(request,pk):
+    try:
+        blog=Blog.objects.get(id=pk)
+        deleted_count, _ = blog.delete()
+        if deleted_count:
+            return Response({"message": "Blog deleted successfully"}, status=200)
+        return Response({"error":"Error occurred"}, status=400)
+    except Blog.DoesNotExist:
+        return Response({"error":"Blog does not exists"}, status=404)
