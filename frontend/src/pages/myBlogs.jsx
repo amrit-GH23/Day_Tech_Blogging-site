@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Confirm from "../components/confirm";
 
 const MyBlogs = () => {
-  const [blogs, setBlogs] = useState("");
+  const [blogs, setBlogs] = useState([]);
+  const [showConfirmID,setConfirmID]=useState(null)
+
 
   const navigate = useNavigate();
   const API_BASE = import.meta.env.VITE_API_URL;
@@ -32,23 +35,6 @@ const MyBlogs = () => {
     getBlog();
   }, []);
 
-  const handleDelete= async(id)=>{
-    try{
-    const response = await fetch(`${API_BASE}/api/delete/${id}/`,{ 
-      method: "DELETE"
-     } )
-    if(response.status==200){
-      toast.success("✅ blog deleted")
-    }
-    else{
-      toast.error("Error occurred")
-    }
-    }
-    catch(error){
-        console.log("error",error);
-    }
-    
-  }
 
   function handleClick(id) {
     navigate(`/view/${id}`);
@@ -87,14 +73,29 @@ const MyBlogs = () => {
                   }}
                 ></div>
                 <button
-                  onClick={(e) =>{
-                  e.stopPropagation()
-                   handleDelete(item.id)
+                  onClick={(e)=>{
+                    e.stopPropagation()
+                    setConfirmID(item.id)
                   }}
                   className=" text-white px-2 py-2 rounded hover:bg-red-400  transition self-end"
                 >
                   🗑️
                 </button>
+                {
+                  showConfirmID===item.id&&( 
+                  <Confirm
+                   id={item.id}
+                   onConfirm={()=>{
+                    setBlogs((prevBlogs) => prevBlogs.filter(blog => blog.id !== item.id));
+                     setConfirmID(null)
+                   }}
+                   onCancel={()=>{
+                     setConfirmID(null)
+                   }}
+                  />
+                   
+                  )
+                }
               </div>
             ))}
           </div>
