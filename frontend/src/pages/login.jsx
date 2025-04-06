@@ -12,7 +12,7 @@ const Login = () => {
       e.preventDefault();
     
       try {
-        const API_BASE = import.meta.env.VITE_API_URL;
+        const API_BASE = "https://day-tech-blogging-site.onrender.com";
         const response = await fetch(`${API_BASE}/api/token/`, {
           method: "POST",
           headers: {

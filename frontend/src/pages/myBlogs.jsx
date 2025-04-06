@@ -11,7 +11,7 @@ const MyBlogs = () => {
 
 
   const navigate = useNavigate();
-  const API_BASE = import.meta.env.VITE_API_URL;
+  const API_BASE = "https://day-tech-blogging-site.onrender.com";
   useEffect(() => {
     const t = localStorage.getItem("accessToken");
 
