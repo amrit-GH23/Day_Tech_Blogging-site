@@ -12,7 +12,8 @@ const Login = () => {
       e.preventDefault();
     
       try {
-        const response = await fetch("http://localhost:8000/api/token/", {
+        const API_BASE = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${API_BASE}/api/token/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
