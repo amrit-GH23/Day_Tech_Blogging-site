@@ -29,7 +29,7 @@ const Confirm = ({id,onConfirm,onCancel}) => {
        </div>
        <div className='flex justify-evenly mt-2.5'>
            <button
-            className='bg-red-600 p-2 rounded-xl '
+            className='bg-red-600 p-2 rounded-xl cursor-pointer'
                 onClick={
                     (e)=>{
                         e.stopPropagation()
@@ -38,7 +38,7 @@ const Confirm = ({id,onConfirm,onCancel}) => {
                 }
                 >YES</button>
             <button
-            className='bg-green-600 p-2 rounded-xl'
+            className='bg-green-600 p-2 rounded-xl cursor-pointer'
                 onClick={(e)=>{
                     e.stopPropagation()
                     onCancel()
