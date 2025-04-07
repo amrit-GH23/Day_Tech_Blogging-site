@@ -10,22 +10,37 @@ const MyBlogs = () => {
   const [showConfirmID,setConfirmID]=useState(null)
 
   const API_BASE = "https://day-tech-blogging-site.onrender.com";
-   const refreshToken=async()=>{
-     refresh=localStorage.getItem("refreshToken")
-       try{
-         const response=await fetch(`${API_BASE}/api/token/refresh` ,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({refresh:refresh}),
-        });
-        console.log(response);
-       }
-       catch(error){
-         console.log("error",error)
-       }
-   }
+
+  const refreshToken = async () => {
+    const refresh = localStorage.getItem("refreshToken");
+  
+    if (!refresh) {
+      console.log("No refresh token found in localStorage.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(`${API_BASE}/api/token/refresh/`, { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ refresh }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("New access token:", data.access);
+        localStorage.setItem("accessToken", data.access);
+  
+    } catch (error) {
+      console.log("Error refreshing token:", error);
+    }
+  };
+  
 
   const navigate = useNavigate();
   useEffect(() => {
