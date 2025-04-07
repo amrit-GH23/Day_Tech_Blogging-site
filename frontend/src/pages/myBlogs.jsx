@@ -11,66 +11,76 @@ const MyBlogs = () => {
 
   const API_BASE = "https://day-tech-blogging-site.onrender.com";
 
+ 
   const refreshToken = async () => {
     const refresh = localStorage.getItem("refreshToken");
-  
+
     if (!refresh) {
       console.log("No refresh token found in localStorage.");
-      return;
+      return false;
     }
-  
+
     try {
-      const response = await fetch(`${API_BASE}/api/token/refresh/`, { 
+      const response = await fetch(`${API_BASE}/api/token/refresh/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ refresh }),
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const data = await response.json();
-      console.log("New access token:", data.access);
-        localStorage.setItem("accessToken", data.access);
-  
+      localStorage.setItem("accessToken", data.access);
+      console.log("Token refreshed!");
+      return true;
     } catch (error) {
       console.log("Error refreshing token:", error);
+      return false;
     }
   };
-  
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    const t = localStorage.getItem("accessToken");
+  const getBlog = async (isRetry = false) => {
+    const token = localStorage.getItem("accessToken");
 
-    if (t === "" || t === null) {
-      console.log("No token found");
+    if (!token) {
+      console.log("No access token");
       return;
     }
-    const getBlog = async () => {
-      try {
-        const response = await axios.get(`${API_BASE}/api/myBlogs`, {
-          headers: {
-            Authorization: `Bearer ${t}`, // Attach token in headers
-          },
-        });
-        const data = response.data;
-        setBlogs(data);
-      } catch (error) {
-          if(t){
-              refreshToken();
-          }
-          else{
-            console.log("No blogs from you");
-          }
+
+    try {
+      const response = await axios.get(`${API_BASE}/api/myBlogs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
+      setBlogs(data);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        !isRetry 
+      ) {
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          getBlog(true); 
+        } else {
+          console.log("Session expired, redirecting to login...");
+          navigate("/login"); 
+        }
+      } else {
+        console.log("Error fetching blogs:", error);
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     getBlog();
   }, []);
-
 
   function handleClick(id) {
     navigate(`/view/${id}`);
