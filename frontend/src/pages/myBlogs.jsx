@@ -9,9 +9,25 @@ const MyBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [showConfirmID,setConfirmID]=useState(null)
 
+  const API_BASE = "https://day-tech-blogging-site.onrender.com";
+   const refreshToken=async()=>{
+     refresh=localStorage.getItem("refreshToken")
+       try{
+         const response=await fetch(`${API_BASE}/api/token/refresh` ,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({refresh:refresh}),
+        });
+        console.log(response);
+       }
+       catch(error){
+         console.log("error",error)
+       }
+   }
 
   const navigate = useNavigate();
-  const API_BASE = "https://day-tech-blogging-site.onrender.com";
   useEffect(() => {
     const t = localStorage.getItem("accessToken");
 
@@ -29,7 +45,12 @@ const MyBlogs = () => {
         const data = response.data;
         setBlogs(data);
       } catch (error) {
-        console.log("error", error);
+          if(t){
+              refreshToken();
+          }
+          else{
+            console.log("No blogs from you");
+          }
       }
     };
     getBlog();
