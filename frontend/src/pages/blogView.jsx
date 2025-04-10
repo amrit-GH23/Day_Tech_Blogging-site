@@ -46,6 +46,16 @@ const blogView = () => {
     setProgress(scrolled);
   };
 
+  const sendComment=async()=>{
+     try{
+        response = await fetch(`${API_BASE}/api/comment/${id}`)
+        console.log(response)
+     }
+     catch(error){
+      console.log("error",error)
+     }
+  }
+
   if (!blog) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-100 to-white">
@@ -86,7 +96,9 @@ const blogView = () => {
             }}
             required
           />
-          <button className=" bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition p-2">
+          <button className=" bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition p-2"
+            onClick={sendComment}
+          >
             comment
           </button>
         </div>
