@@ -48,7 +48,7 @@ const blogView = () => {
 
   const sendComment=async()=>{
      try{
-        response = await fetch(`${API_BASE}/api/comment/${id}`)
+       const response = await fetch(`${API_BASE}/api/comment/${id}`)
         console.log(response)
      }
      catch(error){
