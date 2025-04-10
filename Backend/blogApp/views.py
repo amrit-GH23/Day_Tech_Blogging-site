@@ -5,8 +5,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Blog
-from .serializers import BlogSerializer
+from .models import Blog, Comment
+from .serializers import BlogSerializer,commentSerializer
 
 @api_view(['POST'])
 def signup(request):
@@ -105,3 +105,39 @@ def deleteBlog(request,pk):
         return Response({"error":"Error occurred"}, status=400)
     except Blog.DoesNotExist:
         return Response({"error":"Blog does not exists"}, status=404)
+
+@permission_classes([IsAuthenticated])    
+@api_view(['POST'])    
+def sendComment(request):
+    serializer = commentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save(author=request.user)
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+# @permission_classes([IsAuthenticated])    
+@api_view(['GET'])
+def getComment(request,pk):
+    try:
+        blog=Blog.objects.get(id=pk)
+    except Blog.DoesNotExist:
+        return Response({"error":"Blog does not exists"},status=404)
+    message= Comment.objects.filter(blog=pk).order_by("-created_at")
+    if(message):  
+        serializer = commentSerializer(message, many=True)
+        return Response(serializer.data)
+    else:
+        return Response({"message":"no comments"},status=200)
+   
+
+
+
+
+
+
+
+
+    if(blog.author==request.user):
+        return Response({"authorized": True}, status=200)
+    else:
+        return Response({"authorized": False}, status=403)

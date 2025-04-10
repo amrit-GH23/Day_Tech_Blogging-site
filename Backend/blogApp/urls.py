@@ -18,4 +18,6 @@ urlpatterns = [
     path('edit/<int:pk>/', views.Edit_blog),
     path('myBlogs/', views.myBlogs),
     path('delete/<int:pk>/', views.deleteBlog),
+    path('comment/', views.sendComment),
+    path('getcomment/<int:pk>/', views.getComment),
 ]
