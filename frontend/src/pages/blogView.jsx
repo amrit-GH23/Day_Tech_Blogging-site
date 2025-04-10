@@ -26,7 +26,7 @@ const blogView = () => {
       try {
         const response = await fetch(`${API_BASE}/api/getcomment/${id}/`);
         console.log(response);
-        data = await response.json();
+      const data = await response.json();
         setTcomment(data);
         console.log(Tcomment);
       } catch (error) {
