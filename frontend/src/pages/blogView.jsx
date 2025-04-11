@@ -63,7 +63,7 @@ const blogView = () => {
           "Content-Type": "application/json",
            Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(comment),
+        body: JSON.stringify({ comment }),
       })
         console.log(response)
         setComment("")
