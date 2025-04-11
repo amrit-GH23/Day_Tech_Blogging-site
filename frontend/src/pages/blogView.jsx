@@ -120,7 +120,7 @@ const blogView = () => {
           </button>
         </div>
           <hr />
-        <div className="bg-gray-400 rounded-2xl max-h-[300px]">
+        <div className="bg-gray-400 rounded-2xl max-h-[300px] overflow-y-scroll">
           {Tcomment.length > 0 ? (
             Tcomment.map((comm) => <CommentBar key={comm.id} comm={comm} />)
           ) : (

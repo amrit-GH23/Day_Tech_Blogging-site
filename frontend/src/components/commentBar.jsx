@@ -7,7 +7,7 @@ const CommentBar = (props) => {
 
 
   return (
-       <div className='bg-gray-800 border-2 m-2'>
+       <div className='m-2 rounded-2xl'>
         <p className="text-sm text-black mb-1">By {author}</p>
        <h2 className="text-2xl font-semibold text-blue-800 mb-2">
           {comment}
