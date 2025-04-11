@@ -48,7 +48,14 @@ const blogView = () => {
 
   const sendComment=async()=>{
      try{
-       const response = await fetch(`${API_BASE}/api/comment/${id}`)
+       const response = await fetch(`${API_BASE}/api/comment/${id}`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(comment),
+      })
         console.log(response)
      }
      catch(error){
