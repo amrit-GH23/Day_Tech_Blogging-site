@@ -29,7 +29,7 @@ const blogView = () => {
     getBlog();
   }, [id]);
 
-  const API_BASE = "https://day-tech-blogging-site.onrender.com";
+  const API_BASE = "http://127.0.0.1:8000";
   useEffect(() => {
     const getComment = async () => {
       try {
@@ -101,12 +101,12 @@ const blogView = () => {
         ></p>
       </div>
       <div className="mt-3.5 p-4 max-w-3xl mx-auto">
-        <h1>Comments</h1>
-        <div className="flex gap-1">
+        <h1 className="pb-2 text-2xl text-blue-600">Comments</h1>
+        <div className="flex gap-1 mb-2">
           <input
             type="text"
             placeholder="write comment"
-            className="w-[70%] border border-gray-300 p-2 rounded-xl"
+            className="w-[90%] border border-gray-300 p-2 rounded-xl"
             value={comment}
             onChange={(e) => {
               setComment(e.target.value);
@@ -119,11 +119,13 @@ const blogView = () => {
             comment
           </button>
         </div>
-        <div>
+          <hr />
+        <div className="bg-gray-400 rounded-2xl max-h-[300px]">
           {Tcomment.length > 0 ? (
             Tcomment.map((comm) => <CommentBar key={comm.id} comm={comm} />)
           ) : (
-            <p>Be the first one to comment</p>
+            <p className="m-4 italic "
+             >Be the first one to comment</p>
           )}
         </div>
       </div>
