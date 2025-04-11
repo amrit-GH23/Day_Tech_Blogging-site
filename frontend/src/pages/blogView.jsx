@@ -31,18 +31,18 @@ const blogView = () => {
 
   const API_BASE = "https://day-tech-blogging-site.onrender.com";
   useEffect(() => {
-    const getComment = async (id) => {
+    const getComment = async () => {
       try {
         const response = await fetch(`${API_BASE}/api/getcomment/${id}/`);
         console.log(response);
       const data = await response.json();
         setTcomment(data);
-        console.log(Tcomment);
+        console.log(data);
       } catch (error) {
         console.log("error:", error);
       }
     };
-    getComment(id);
+    getComment();
   }, [id]);
 
   const [progress, setProgress] = useState(0);

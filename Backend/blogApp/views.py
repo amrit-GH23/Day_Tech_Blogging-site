@@ -122,7 +122,7 @@ def getComment(request,pk):
         blog=Blog.objects.get(id=pk)
     except Blog.DoesNotExist:
         return Response({"error":"Blog does not exists"},status=404)
-    message= Comment.objects.filter(blog=pk).order_by("-created_at")
+    message= Comment.objects.filter(blog=blog).order_by("-created_at")
     if(message):  
         serializer = commentSerializer(message, many=True)
         return Response(serializer.data)
