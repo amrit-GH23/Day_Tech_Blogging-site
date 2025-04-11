@@ -12,6 +12,15 @@ const blogView = () => {
   const [comment, setComment] = useState("");
   const [Tcomment, setTcomment] = useState([]);
 
+ 
+   const [token, setToken] = useState(null);
+ 
+    useEffect(() => {
+     const t= localStorage.getItem("accessToken")
+     setToken(t)
+ 
+   }, [])
+
   useEffect(() => {
     const getBlog = async () => {
       const data = await fetchBlogs2(id);
