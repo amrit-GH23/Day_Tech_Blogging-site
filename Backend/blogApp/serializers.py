@@ -10,14 +10,14 @@ class BlogSerializer(serializers.ModelSerializer):
 
     def get_author(self, obj):
         return obj.author.first_name
-
+    
 class commentSerializer(serializers.ModelSerializer):
-    author = serializers.SerializerMethodField()
+    author = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Comment
         fields = '__all__'
-
+        read_only_fields = ['author', 'blog', 'created_at']
 
     def get_author(self, obj):
         return obj.author.first_name

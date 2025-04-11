@@ -111,7 +111,7 @@ def deleteBlog(request,pk):
 def sendComment(request,pk):
     serializer = commentSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save(author=request.user,blog=pk)
+        serializer.save(author=request.user,blog=Blog.objects.get(id=pk))
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
