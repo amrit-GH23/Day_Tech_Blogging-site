@@ -29,7 +29,7 @@ const blogView = () => {
     getBlog();
   }, [id]);
 
-  const API_BASE = "http://127.0.0.1:8000";
+  const API_BASE = "https://day-tech-blogging-site.onrender.com";
   useEffect(() => {
     const getComment = async () => {
       try {
