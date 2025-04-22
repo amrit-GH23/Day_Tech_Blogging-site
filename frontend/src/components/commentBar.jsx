@@ -1,25 +1,3 @@
-// import axios from 'axios'
-// import React, { useState } from 'react'
-
-// const CommentBar = (props) => {
-
-//   const { comment, author, created_at } = props.comm;
-
-
-//   return (
-//        <div className='m-2 rounded-2xl'>
-//         <p className="text-sm text-black mb-1">By {author}</p>
-//        <h2 className="text-2xl font-semibold text-blue-800 mb-2">
-//           {comment}
-//         </h2>
-//         <p className="text-sm text-gray-500 mb-3">{new Date(created_at).toLocaleDateString()}</p>
-//         <hr />
-//        </div>
-//   )
-// }
-
-// export default CommentBar
-
 import React from 'react';
 
 const CommentBar = (props) => {
@@ -83,21 +61,6 @@ const CommentBar = (props) => {
             <span className="text-xs text-gray-500">{timeAgo(created_at)}</span>
           </div>
           <p className="mt-1 text-sm text-gray-700 whitespace-pre-line">{comment}</p>
-          
-          <div className="mt-2 flex items-center space-x-4">
-            <button className="flex items-center text-xs text-gray-500 hover:text-blue-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-              </svg>
-              Like
-            </button>
-            <button className="flex items-center text-xs text-gray-500 hover:text-blue-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              Reply
-            </button>
-          </div>
         </div>
       </div>
     </div>

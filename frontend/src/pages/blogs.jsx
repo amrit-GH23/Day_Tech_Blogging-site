@@ -52,8 +52,14 @@ const Blogs = () => {
       </div>
     ))}
   </div>
-) : (
-  <p className="text-center text-gray-600 mt-10">Loading..........blogs.....for.......you...😅😅</p>
+) : 
+   (
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 to-white flex items-center justify-center">
+        <div className="animate-pulse flex flex-col items-center">
+          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <p className="text-blue-600 font-medium">Loading blog...</p>
+        </div>
+      </div>
 )}
       </div>
     </div>
