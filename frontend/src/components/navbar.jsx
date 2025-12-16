@@ -47,7 +47,7 @@ const Navbar = () => {
 
     const handleMyBlogsClick = () => {
     if (!token) {
-      alert("Login required");
+      toast("Login required");
     } else {
       handleNavigate('/myBlogs');
     }
@@ -61,12 +61,12 @@ const Navbar = () => {
    const handleEditClick = async (e) => {
     e.preventDefault();
     if (!token) {
-      alert("Login required to Edit a blog!");
+      toast("Login required to Edit a blog!");
       return;
     }
     const res = await Check_user(id);
     if (!res) {
-      alert("You are not authorised to edit blog!!");
+      toast.error("You are not authorised to edit blog!!");
     } else {
       handleNavigate(`/edit/${id}`);
     }
