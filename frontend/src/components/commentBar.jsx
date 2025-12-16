@@ -50,21 +50,28 @@ const CommentBar = (props) => {
   };
 
   return (
-    <div className="p-5 hover:bg-gray-50 transition-colors duration-200">
-      <div className="flex items-start space-x-3">
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${avatarColorClass}`}>
-          {getInitials(author)}
+<div className="p-5 hover:bg-[#0F172A]/30 transition-colors">
+    <div className="flex items-start gap-4">
+      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9] flex items-center justify-center text-[#0F172A] font-semibold shadow-lg shadow-[#38BDF8]/30 flex-shrink-0">
+        {author?.charAt(0) || 'A'}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="font-semibold text-[#E5E7EB]">{author || 'Anonymous'}</span>
+          <span className="text-[#9CA3AF] text-sm">•</span>
+          <span className="text-[#9CA3AF] text-sm">
+            {new Date(created_at).toLocaleDateString('en-US', { 
+              month: 'short', 
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </span>
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-900">{author}</h3>
-            <span className="text-xs text-gray-500">{timeAgo(created_at)}</span>
-          </div>
-          <p className="mt-1 text-sm text-gray-700 whitespace-pre-line">{comment}</p>
-        </div>
+        <p className="text-[#E5E7EB] leading-relaxed">{comment}</p>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default CommentBar;
