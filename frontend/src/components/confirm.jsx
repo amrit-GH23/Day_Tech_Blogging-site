@@ -2,11 +2,21 @@ import React from 'react'
 import toast from 'react-hot-toast';
 
 const Confirm = ({id,onConfirm,onCancel}) => {
-    const API_BASE = import.meta.env.VITE_API_URL;
+    const token = localStorage.getItem("accessToken");
+    const API_BASE = "https://day-tech-blogging-site.onrender.com";
     const handleDelete= async(id)=>{
         try{
+        if (!token) {
+        toast.error("Authentication required");
+        return;
+        }
+
         const response = await fetch(`${API_BASE}/api/delete/${id}/`,{ 
-          method: "DELETE"
+          method: "DELETE",
+          headers: {
+          "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`,
+         },
          } )
         if(response.status==200){
           toast.success("blog deleted")
@@ -18,8 +28,7 @@ const Confirm = ({id,onConfirm,onCancel}) => {
         }
         catch(error){
             console.log("error",error);
-        }
-        
+        }   
       }
 
   return (
