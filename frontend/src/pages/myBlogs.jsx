@@ -11,7 +11,7 @@ const MyBlogs = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const API_BASE = "https://day-tech-blogging-site.onrender.com";
-
+  const navigate = useNavigate();
  
   const refreshToken = async () => {
     const refresh = localStorage.getItem("refreshToken");
@@ -89,7 +89,7 @@ const MyBlogs = () => {
 
    const handleEdit = (e, id) => {
     e.stopPropagation();
-    console.log(`Navigate to /edit/${id}`);
+    navigate(`/edit/${id}`);
   };
 
   const handleDelete = (e, id) => {
@@ -139,7 +139,7 @@ const MyBlogs = () => {
             
             <button
               onClick={() => navigate('/create')}
-              className="px-6 py-3 bg-gradient-to-r from-[#38BDF8] to-[#0EA5E9] text-[#0F172A] font-bold rounded-xl hover:shadow-lg hover:shadow-[#38BDF8]/30 transition-all duration-200 flex items-center gap-2"
+              className="px-6 py-3 bg-gradient-to-r from-[#38BDF8] to-[#0EA5E9] text-[#0F172A] font-bold rounded-xl hover:shadow-lg hover:shadow-[#38BDF8]/30 transition-all duration-200 flex items-center gap-2 cursor-pointer"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -205,7 +205,7 @@ const MyBlogs = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={(e) => handleEdit(e, item.id)}
-                        className="p-2 text-[#9CA3AF] hover:text-[#38BDF8] hover:bg-[#38BDF8]/10 rounded-lg transition-all"
+                        className="p-2 text-[#9CA3AF] hover:text-[#38BDF8] hover:bg-[#38BDF8]/10 rounded-lg transition-all cursor-pointer"
                         title="Edit"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,7 +214,7 @@ const MyBlogs = () => {
                       </button>
                       <button
                         onClick={(e) => handleDelete(e, item.id)}
-                        className="p-2 text-[#9CA3AF] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                        className="p-2 text-[#9CA3AF] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all cursor-pointer"
                         title="Delete"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
