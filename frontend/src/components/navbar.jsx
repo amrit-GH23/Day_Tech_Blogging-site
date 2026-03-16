@@ -90,14 +90,14 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-2 lg:gap-6">
             {!id ? (
               <button 
-                className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937]"
+                className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937] cursor-pointer"
                 onClick={() => handleNavigate('/create')}
               >
                 Create Blog
               </button>
             ) : (
               <button 
-                className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937]"
+                className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937] cursor-pointer"
                 onClick={handleEditClick}
               >
                 Edit Blog
@@ -105,7 +105,7 @@ const Navbar = () => {
             )}
 
             <button 
-              className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937]"
+              className="text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors px-3 py-2 rounded-lg hover:bg-[#1F2937] cursor-pointer"
               onClick={handleMyBlogsClick}
             >
               My Blogs
@@ -113,14 +113,14 @@ const Navbar = () => {
 
             {token ? (
               <button 
-                className="px-4 py-2 bg-red-500/10 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/20 transition-all font-medium"
+                className="px-4 py-2 bg-red-500/10 text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/20 transition-all font-medium cursor-pointer"
                 onClick={handleLogout}
               >
                 Log Out
               </button>
             ) : (
               <button 
-                className="px-4 py-2 bg-[#38BDF8] text-[#0F172A] font-medium rounded-lg hover:bg-[#0EA5E9] transition-all shadow-lg shadow-[#38BDF8]/20"
+                className="px-4 py-2 bg-[#38BDF8] text-[#0F172A] font-medium rounded-lg hover:bg-[#0EA5E9] transition-all shadow-lg shadow-[#38BDF8]/20 cursor-pointer"
                 onClick={() => handleNavigate('/signup')}
               >
                 Sign Up
